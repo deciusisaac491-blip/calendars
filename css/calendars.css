@@ -1,0 +1,859 @@
+:root{
+--bg: #0f1115;
+--panel: #151924;
+--panel2: #10141c;
+--text: #e8ecf1;
+--muted: #9aa4b2;
+--line: #252b3a;
+--accent: #2d9cdb;
+--btn: #1d2433;
+--btnHover: #273147;
+--danger: #d94b4b;
+--toastSuccess: #1f9d63;
+--toastError: #d94b4b;
+--toastInfo: #2d9cdb;
+}
+
+*{
+box-sizing: border-box;
+}
+
+html,
+body{
+margin: 0;
+padding: 0;
+min-height: 100%;
+background: var(--bg);
+color: var(--text);
+font-family: Arial, sans-serif;
+}
+
+body{
+overflow: hidden;
+}
+
+.topbar{
+height: 56px;
+background: var(--panel2);
+border-bottom: 1px solid var(--line);
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding: 0 16px;
+}
+
+.brand{
+font-weight: 800;
+letter-spacing: 1px;
+}
+
+.topbar-right{
+display:flex;
+align-items:center;
+gap: 10px;
+}
+
+.user-badge{
+color: var(--muted);
+font-size: 14px;
+}
+
+.layout{
+display:flex;
+height: calc(100vh - 56px);
+width: 100%;
+}
+
+.sidebar{
+width: 290px;
+min-width: 290px;
+background: var(--panel);
+border-right: 1px solid var(--line);
+padding: 14px;
+overflow-y: auto;
+}
+
+.sidebar-header-row{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap: 10px;
+margin-bottom: 10px;
+}
+
+.sidebar-title{
+font-size: 16px;
+font-weight: 700;
+}
+
+.sidebar-sep{
+height: 1px;
+background: var(--line);
+margin: 12px 0;
+}
+
+.cal-list{
+display:flex;
+flex-direction:column;
+gap: 8px;
+max-height: calc(100vh - 190px);
+overflow:auto;
+padding-right: 4px;
+}
+
+.cal-item{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap: 10px;
+padding: 10px;
+border: 1px solid var(--line);
+border-radius: 10px;
+background: rgba(0,0,0,0.18);
+cursor:pointer;
+transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.cal-item:hover{
+border-color: rgba(45,156,219,0.6);
+transform: translateY(-1px);
+}
+
+.cal-item.active{
+border-color: rgba(45,156,219,0.85);
+background: rgba(45,156,219,0.14);
+box-shadow: inset 0 0 0 1px rgba(45,156,219,0.2);
+}
+
+.cal-left{
+display:flex;
+align-items:center;
+gap: 10px;
+min-width: 0;
+flex: 1;
+}
+
+.dot{
+width: 12px;
+height: 12px;
+border-radius: 999px;
+flex: 0 0 auto;
+}
+
+.cal-title{
+font-size: 14px;
+color: var(--text);
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+}
+
+.cal-right{
+display:flex;
+align-items:center;
+gap: 8px;
+}
+
+.badge{
+font-size: 12px;
+color: var(--muted);
+border: 1px solid var(--line);
+padding: 3px 7px;
+border-radius: 999px;
+}
+
+/* Variantes de réponse d'invitation */
+.badge-accepted{ color:#1f9d63; border-color:#1f9d63; }
+.badge-declined{ color:#d94b4b; border-color:#d94b4b; }
+.badge-pending { color:#94a3b8; border-color:#334155; }
+
+/* Liste des réponses dans le formulaire d'édition */
+.response-list-label{
+font-size: 13px;
+font-weight: 700;
+color: var(--muted);
+margin-bottom: 8px;
+text-transform: uppercase;
+letter-spacing: .5px;
+}
+.response-list{
+list-style: none;
+padding: 0;
+margin: 0;
+display: flex;
+flex-direction: column;
+gap: 6px;
+}
+.response-row{
+display: flex;
+align-items: center;
+justify-content: space-between;
+font-size: 13px;
+color: var(--text);
+}
+.response-name{
+overflow: hidden;
+text-overflow: ellipsis;
+white-space: nowrap;
+max-width: 220px;
+}
+
+.mini-icon-btn{
+border: 1px solid var(--line);
+background: var(--btn);
+color: var(--text);
+width: 30px;
+height: 30px;
+border-radius: 8px;
+cursor: pointer;
+font-size: 14px;
+}
+
+.mini-icon-btn:hover{
+background: var(--btnHover);
+}
+
+.btn{
+display:inline-block;
+background: var(--btn);
+color: var(--text);
+border: 1px solid var(--line);
+padding: 9px 12px;
+border-radius: 10px;
+text-decoration:none;
+cursor:pointer;
+font-size: 14px;
+transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.btn:hover{
+background: var(--btnHover);
+}
+
+.btn-primary{
+background: rgba(45,156,219,0.18);
+border-color: rgba(45,156,219,0.45);
+}
+
+.btn-primary:hover{
+background: rgba(45,156,219,0.28);
+}
+
+.btn.danger{
+background: rgba(217,75,75,0.2);
+border-color: rgba(217,75,75,0.5);
+color: #ffdede;
+}
+
+.btn.danger:hover{
+background: rgba(217,75,75,0.35);
+}
+
+.btn-sm{
+padding: 7px 10px;
+font-size: 13px;
+}
+
+.hint{
+margin-top: 12px;
+color: var(--muted);
+font-size: 13px;
+}
+
+.content{
+flex: 1;
+min-width: 0;
+height: 100%;
+padding: 10px;
+background: #0b0e13;
+overflow: auto;
+}
+
+#calendar{
+width: 100%;
+min-height: calc(100vh - 76px);
+background: #ffffff;
+border-radius: 18px;
+padding: 12px 14px;
+box-shadow: 0 10px 30px rgba(0,0,0,0.22);
+}
+
+/* FullCalendar */
+.fc{
+width: 100%;
+}
+
+.fc .fc-toolbar{
+margin-bottom: 12px !important;
+gap: 10px;
+}
+
+.fc .fc-toolbar-title{
+font-size: 22px;
+font-weight: 700;
+color: #1c2430;
+}
+
+.fc .fc-button{
+border-radius: 10px !important;
+padding: 8px 12px !important;
+font-size: 13px !important;
+box-shadow: none !important;
+}
+
+.fc .fc-button-primary{
+background: #1f2937 !important;
+border-color: #1f2937 !important;
+}
+
+.fc .fc-button-primary:hover{
+background: #111827 !important;
+border-color: #111827 !important;
+}
+
+.fc .fc-button-primary:not(:disabled).fc-button-active,
+.fc .fc-button-primary:not(:disabled):active{
+background: #2d9cdb !important;
+border-color: #2d9cdb !important;
+}
+
+.fc .fc-scrollgrid{
+border-radius: 12px;
+overflow: hidden;
+}
+
+.fc .fc-daygrid-day-frame{
+min-height: 120px;
+}
+
+.fc .fc-timegrid-slot{
+height: 44px;
+}
+
+.fc .fc-timegrid-axis-cushion,
+.fc .fc-timegrid-slot-label-cushion{
+font-size: 12px;
+color: #4b5563;
+font-weight: 600;
+}
+
+.fc .fc-col-header-cell-cushion,
+.fc .fc-daygrid-day-number{
+color: #1f2937;
+font-weight: 600;
+}
+
+.fc .fc-timegrid-now-indicator-line{
+border-color: #ef4444 !important;
+}
+
+.fc .fc-timegrid-now-indicator-arrow{
+border-color: #ef4444 !important;
+}
+
+.fc .fc-event{
+border-radius: 8px !important;
+padding: 3px 6px !important;
+font-size: 12px;
+border: none !important;
+box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+}
+
+.fc .fc-timegrid-event{
+min-height: 24px;
+}
+
+.fc .fc-timegrid-event .fc-event-main{
+padding: 2px 4px;
+}
+
+.fc .fc-timegrid-event .fc-event-time{
+font-weight: 700;
+font-size: 11px;
+}
+
+.fc .fc-timegrid-event .fc-event-title{
+font-size: 12px;
+line-height: 1.2;
+}
+
+.fc .fc-daygrid-event{
+min-height: 22px;
+}
+
+.fc .fc-daygrid-event .fc-event-title{
+font-size: 12px;
+line-height: 1.2;
+}
+
+.fc-theme-standard td,
+.fc-theme-standard th,
+.fc-theme-standard .fc-scrollgrid{
+border-color: #e5e7eb !important;
+}
+
+/* ==========================================================
+MODALES
+========================================================== */
+.hidden{
+display:none !important;
+}
+
+.modal{
+position: fixed;
+inset: 0;
+background: rgba(0, 0, 0, 0.62);
+display:flex;
+align-items:center;
+justify-content:center;
+padding: 16px;
+z-index: 9999;
+
+/*
+----------------------------------------------------------------
+Très important :
+si la fenêtre est petite, le fond de modale doit pouvoir
+lui-même scroller un minimum.
+----------------------------------------------------------------
+*/
+overflow-y: auto;
+}
+
+.modal-card{
+width: 100%;
+max-width: 560px;
+background: var(--panel);
+border: 1px solid var(--line);
+border-radius: 16px;
+box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+
+/*
+----------------------------------------------------------------
+On transforme la carte en conteneur vertical :
+- header
+- body
+- footer
+----------------------------------------------------------------
+*/
+display: flex;
+flex-direction: column;
+
+/*
+----------------------------------------------------------------
+Hauteur maximale basée sur l'écran.
+C'est ça qui empêche la modale de "sortir" de la fenêtre.
+----------------------------------------------------------------
+*/
+max-height: calc(100vh - 32px);
+
+overflow: hidden;
+}
+
+.modal-card-small{
+max-width: 460px;
+}
+
+.modal-card-confirm{
+max-width: 430px;
+}
+
+/* Modale évènement plus large */
+.modal-card-large{
+max-width: 820px;
+}
+
+/*
+|--------------------------------------------------------------------------
+| Cartes spécialisées
+|--------------------------------------------------------------------------
+| On garde des classes dédiées pour pouvoir ajuster plus tard
+| indépendamment la modale évènement et la modale calendrier.
+|--------------------------------------------------------------------------
+*/
+.modal-card-event{
+max-height: calc(100vh - 32px);
+}
+
+.modal-card-calendar{
+max-height: calc(100vh - 32px);
+}
+
+.modal-header{
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding: 16px 18px;
+border-bottom: 1px solid var(--line);
+background: var(--panel2);
+
+/*
+----------------------------------------------------------------
+Le header ne doit pas se réduire.
+----------------------------------------------------------------
+*/
+flex-shrink: 0;
+}
+
+.modal-header h2{
+margin:0;
+font-size: 20px;
+}
+
+.icon-btn{
+border: 1px solid var(--line);
+background: var(--btn);
+color: var(--text);
+width: 38px;
+height: 38px;
+border-radius: 10px;
+cursor: pointer;
+font-size: 16px;
+}
+
+.icon-btn:hover{
+background: var(--btnHover);
+}
+
+/*
+|--------------------------------------------------------------------------
+| Zone centrale des modales
+|--------------------------------------------------------------------------
+*/
+.modal-body{
+padding: 18px;
+display:flex;
+flex-direction:column;
+gap: 14px;
+min-height: 0;
+}
+
+/*
+|--------------------------------------------------------------------------
+| Version scrollable
+|--------------------------------------------------------------------------
+| C'est cette classe qui fait toute la différence :
+| - le body prend la place restante
+| - il peut défiler
+|--------------------------------------------------------------------------
+*/
+.modal-body-scrollable{
+flex: 1 1 auto;
+overflow-y: auto;
+overscroll-behavior: contain;
+scrollbar-width: thin;
+}
+
+.confirm-message{
+margin: 0;
+font-size: 15px;
+line-height: 1.5;
+color: var(--text);
+}
+
+.form-group{
+display:flex;
+flex-direction:column;
+gap: 6px;
+}
+
+.form-group label{
+font-size: 14px;
+color: var(--text);
+font-weight: 600;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select{
+width:100%;
+padding: 11px 12px;
+border-radius: 10px;
+border: 1px solid var(--line);
+background: var(--panel2);
+color: var(--text);
+font-size: 14px;
+}
+
+.form-group textarea{
+resize: vertical;
+min-height: 96px;
+}
+
+/* Style spécial pour la liste multiple des participants */
+.multi-select{
+min-height: 120px;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus{
+outline: none;
+border-color: rgba(45,156,219,0.75);
+box-shadow: 0 0 0 3px rgba(45,156,219,0.15);
+}
+
+.form-row{
+display:flex;
+gap: 12px;
+}
+
+.two-cols > *{
+flex:1;
+}
+
+.checkbox-row{
+align-items:center;
+}
+
+.checkbox-label{
+display:flex;
+align-items:center;
+gap: 10px;
+color: var(--text);
+cursor: pointer;
+}
+
+.checkbox-label input{
+width: 16px;
+height: 16px;
+}
+
+.color-row{
+display:flex;
+align-items:center;
+gap: 12px;
+}
+
+.color-row input[type="color"]{
+width: 56px;
+height: 42px;
+padding: 4px;
+border-radius: 10px;
+background: var(--panel2);
+border: 1px solid var(--line);
+cursor: pointer;
+}
+
+.muted-text{
+color: var(--muted);
+font-size: 13px;
+}
+
+.small-text{
+margin: 0;
+}
+
+.modal-footer{
+display:flex;
+justify-content:flex-end;
+gap: 10px;
+padding: 16px 18px;
+border-top: 1px solid var(--line);
+background: var(--panel2);
+
+/*
+----------------------------------------------------------------
+Le footer ne doit jamais disparaître ni se compresser.
+----------------------------------------------------------------
+*/
+flex-shrink: 0;
+}
+
+.time-group{
+opacity: 1;
+max-height: 120px;
+overflow: hidden;
+transition: opacity 0.2s ease, max-height 0.2s ease, transform 0.2s ease;
+}
+
+.time-group.hidden-time{
+opacity: 0;
+max-height: 0;
+pointer-events: none;
+transform: translateY(-4px);
+margin: 0;
+padding: 0;
+}
+
+/* Toasts */
+.toast-container{
+position: fixed;
+right: 18px;
+bottom: 18px;
+z-index: 12000;
+display:flex;
+flex-direction:column;
+gap: 10px;
+width: min(360px, calc(100vw - 24px));
+}
+
+.toast{
+display:flex;
+align-items:center;
+gap: 12px;
+padding: 14px 14px;
+border-radius: 14px;
+border: 1px solid var(--line);
+background: rgba(16, 20, 28, 0.96);
+color: var(--text);
+box-shadow: 0 16px 36px rgba(0,0,0,0.28);
+opacity: 0;
+transform: translateY(12px) scale(0.98);
+transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.toast-show{
+opacity: 1;
+transform: translateY(0) scale(1);
+}
+
+.toast-hide{
+opacity: 0;
+transform: translateY(10px) scale(0.98);
+}
+
+.toast-success{
+border-left: 4px solid var(--toastSuccess);
+}
+
+.toast-error{
+border-left: 4px solid var(--toastError);
+}
+
+.toast-info{
+border-left: 4px solid var(--toastInfo);
+}
+
+.toast-icon{
+width: 30px;
+height: 30px;
+border-radius: 999px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-weight: 700;
+flex: 0 0 auto;
+background: rgba(255,255,255,0.06);
+}
+
+.toast-success .toast-icon{
+color: #87f0be;
+}
+
+.toast-error .toast-icon{
+color: #ffb1b1;
+}
+
+.toast-info .toast-icon{
+color: #9ed8ff;
+}
+
+.toast-content{
+flex:1;
+font-size: 14px;
+line-height: 1.35;
+}
+
+.toast-close{
+border:none;
+background: transparent;
+color: var(--muted);
+cursor:pointer;
+font-size: 14px;
+padding: 0;
+width: 20px;
+height: 20px;
+}
+
+.toast-close:hover{
+color: var(--text);
+}
+
+@media (max-width: 1100px){
+.sidebar{
+width: 260px;
+min-width: 260px;
+}
+
+.content{
+padding: 8px;
+}
+
+#calendar{
+padding: 10px;
+}
+
+.fc .fc-daygrid-day-frame{
+min-height: 96px;
+}
+}
+
+@media (max-width: 760px){
+body{
+overflow: auto;
+}
+
+.layout{
+flex-direction: column;
+height: auto;
+}
+
+.sidebar{
+width: 100%;
+min-width: 100%;
+border-right: none;
+border-bottom: 1px solid var(--line);
+}
+
+.content{
+padding: 10px;
+overflow: visible;
+}
+
+#calendar{
+min-height: auto;
+border-radius: 14px;
+}
+
+.fc .fc-toolbar{
+flex-direction: column;
+align-items: stretch !important;
+}
+
+.fc .fc-toolbar-chunk{
+display:flex;
+justify-content:center;
+flex-wrap: wrap;
+gap: 8px;
+}
+
+.form-row{
+flex-direction: column;
+}
+
+.modal{
+padding: 10px;
+}
+
+.modal-card,
+.modal-card-event,
+.modal-card-calendar{
+max-height: calc(100vh - 20px);
+border-radius: 14px;
+}
+
+.modal-footer{
+flex-direction: column;
+}
+
+.modal-footer .btn{
+width: 100%;
+}
+
+.toast-container{
+right: 12px;
+left: 12px;
+width: auto;
+bottom: 12px;
+}
+}
